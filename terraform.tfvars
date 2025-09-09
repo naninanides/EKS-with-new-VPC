@@ -32,7 +32,7 @@ disk_size          = 20
 ami_type           = "AL2023_x86_64_STANDARD" #untuk versi kube 1.33
 
 #provider variable
-aws_access_key = "AKIA5C2NBH3ACFWHOQNK"
-aws_secret_key = "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"
+aws_access_key = 
+aws_secret_key = 
 key_name       = "baihaqi-key"
 # vpc_id         = "vpc-0c019b6598b3dc3ee"
