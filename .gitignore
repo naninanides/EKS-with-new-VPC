@@ -8,3 +8,5 @@ terraform.tfstate.*
 
 # Ignore .terraform working directory
 .terraform/
+
+terraform.tfvars
