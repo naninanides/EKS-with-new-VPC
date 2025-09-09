@@ -1,31 +1,38 @@
 # EKS-with-new-VPC
 
-Repository Terraform untuk deployment Amazon EKS (Elastic Kubernetes Service) dengan pembuatan VPC baru. Project ini menyediakan infrastructure as code yang lengkap untuk setup EKS cluster dari nol dengan dukungan arsitektur ARM64 dan x86_64.
+Terraform Infrastructure as Code for deploying Amazon EKS (Elastic Kubernetes Service) with a new VPC setup on AWS. This project provides a complete infrastructure setup from scratch with best practices and security configurations.
 
-## 📊 Status
+## ☁️ Cloud Providers
+
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+
+## 📊 Project Status
 
 [![Stars](https://img.shields.io/github/stars/naninanides/EKS-with-new-VPC?style=social)](https://github.com/naninanides/EKS-with-new-VPC)
 [![Forks](https://img.shields.io/github/forks/naninanides/EKS-with-new-VPC?style=social)](https://github.com/naninanides/EKS-with-new-VPC/fork)
 [![Issues](https://img.shields.io/github/issues/naninanides/EKS-with-new-VPC)](https://github.com/naninanides/EKS-with-new-VPC/issues)
 [![License](https://img.shields.io/github/license/naninanides/EKS-with-new-VPC)](https://github.com/naninanides/EKS-with-new-VPC/blob/main/LICENSE)
-[![ARM64](https://img.shields.io/badge/ARM64-Supported-green)](https://github.com/naninanides/EKS-with-new-VPC)
+[![Last Commit](https://img.shields.io/github/last-commit/naninanides/EKS-with-new-VPC)](https://github.com/naninanides/EKS-with-new-VPC/commits/main)
 
-## 💻 Bahasa Pemrograman
+## 💻 Languages
 
 - **HCL**: 100.0%
 
-## 🚀 Instalasi
+## 🚀 Installation
 
 ### Prerequisites
 
-- AWS CLI configured
+- AWS CLI configured with appropriate credentials
 - Terraform >= 1.0
-- kubectl (untuk manage cluster)
+- kubectl (for cluster management)
 
 ### Setup
 
 ```# Copy and customize variables
 cp terraform.tfvars.example terraform.tfvars
+# Edit terraform.tfvars with your specific values
 vim terraform.tfvars
 ```
 
@@ -36,51 +43,46 @@ terraform plan
 
 # Apply configuration
 terraform apply
-
-# Configure kubectl
-aws eks update-kubeconfig --region <region> --name <cluster-name>
 ```
 
-### Dukungan ARM64
+### Post-Deployment
 
-Project ini mendukung arsitektur ARM64 (Apple Silicon, Graviton instances):
-
-```# Untuk Linux ARM64
-wget https://releases.hashicorp.com/terraform/latest/terraform_linux_arm64.zip
-unzip terraform_linux_arm64.zip
-sudo mv terraform /usr/local/bin/
+```# Verify cluster connection
+kubectl get nodes
+kubectl get pods --all-namespaces
 ```
 
-## 📖 Penggunaan
+## 📖 Usage
 
-### Basic Usage
+### Quick Start
 
 ```# 2. Deploy infrastructure
 terraform apply
+```
 
-# 3. Connect to your EKS cluster
-aws eks update-kubeconfig --region us-west-2 --name your-cluster-name
+### Connect to EKS Cluster
 
-# 4. Verify connection
+```# Verify connection
 kubectl get nodes
 ```
 
-## ✨ Fitur
+## ✨ Features
 
-- 🏗️ **Infrastructure as Code** - Terraform configuration untuk AWS cloud infrastructure
-- 🌐 **Complete VPC Setup** - Membuat VPC baru dengan subnets, gateways, dan routing
-- ⚓ **Full EKS Deployment** - Setup EKS cluster lengkap dari nol
-- 👥 **Managed Node Groups** - Auto-scaling worker nodes dengan best practices
-- 🔒 **Security Best Practices** - Security groups dan IAM roles yang aman
-- 🎭 **IAM Management** - Role dan policy management untuk EKS
+- 🏗️ **Infrastructure as Code** - Terraform configuration for cloud infrastructure
+- 🌐 **Complete VPC Setup** - Creates new VPC with subnets, gateways, and routing
+- ⚓ **Full EKS Deployment** - Complete EKS cluster setup from scratch
+- 👥 **Managed Node Groups** - Auto-scaling worker nodes with best practices
+- 🔒 **Security Best Practices** - Secure security groups and IAM roles
+- 🎭 **IAM Management** - Role and policy management for EKS
 - ☁️ **Multi-AZ Deployment** - High availability across multiple availability zones
-- 📈 **Auto Scaling** - Automatic scaling berdasarkan workload
-- 🏗️ **ARM64 Compatible** - Native support untuk ARM64 architecture
-- 🔄 **Cross Platform** - Compatible dengan Linux, macOS, dan Windows
-- 📋 **Modular Design** - Terraform modules yang dapat digunakan kembali
-- ⚙️ **Configurable** - Easy customization melalui variables
+- 📈 **Auto Scaling** - Automatic scaling based on workload
+- 🌍 **Multi-Cloud Support** - Configuration for multiple cloud providers
+- 🔄 **Cross Platform** - Compatible with Linux, macOS, and Windows
+- 📋 **Production Ready** - Following infrastructure best practices
+- 📦 **Modular Design** - Reusable Terraform modules
+- ⚙️ **Configurable** - Easy customization through variables
 
-## 📁 Struktur Project
+## 📁 Project Structure
 
 ```📄 .gitignore
 📄 README.md
@@ -96,22 +98,28 @@ kubectl get nodes
 📄 vpc.tf
 ```
 
+## ⚙️ Configuration
+
+Copy `terraform.tfvars.example` to `terraform.tfvars` and customize the values:
+
+``````
+
 ## 👥 Contributors
 
 - [naninanides](https://github.com/naninanides) (1 contributions)
 
 ## 🤝 Contributing
 
-1. Fork repository ini
-2. Buat branch fitur (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-⭐ **Jangan lupa untuk memberikan star jika project ini membantu!**
+⭐ **Please give this repository a star if you found it helpful!**
 
-*Generated by GitHub README Generator* - 2025-09-10 01:16
+*Generated with ❤️ by GitHub README Generator* - 2025-09-10 01:21
 
-🧠 Smart Analysis • 🏗️ ARM64 Compatible • 🚀 No Dependencies
+🧠 Smart Analysis • ☁️ Cloud Provider Detection • 🚀 Production Ready
