@@ -1,11 +1,10 @@
 # EKS-with-new-VPC
 
-Terraform Infrastructure as Code for deploying Amazon EKS (Elastic Kubernetes Service) with a new VPC setup on AWS. This project provides a complete infrastructure setup from scratch with best practices and security configurations.
+Terraform Infrastructure as Code for deploying Amazon EKS (Elastic Kubernetes Service), VPC networking with a new VPC setup on AWS. This project provides a complete infrastructure deployment from scratch with best practices and security configurations.
 
-## ☁️ Cloud Providers
+## ☁️ Infrastructure
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 
 ## 📊 Project Status
@@ -25,8 +24,9 @@ Terraform Infrastructure as Code for deploying Amazon EKS (Elastic Kubernetes Se
 ### Prerequisites
 
 - AWS CLI configured with appropriate credentials
-- Terraform >= 1.0
-- kubectl (for cluster management)
+- AWS IAM permissions for the resources being created
+- Terraform >= 1.0 installed
+- kubectl for Kubernetes cluster management
 
 ### Setup
 
@@ -38,49 +38,79 @@ vim terraform.tfvars
 
 ### Deployment
 
-```# Review deployment plan
+```# Format and validate configuration
+terraform fmt
+terraform validate
+
+# Review deployment plan
 terraform plan
 
 # Apply configuration
 terraform apply
+
+# View outputs
+terraform output
 ```
 
 ### Post-Deployment
 
-```# Verify cluster connection
+#### EKS Cluster Configuration
+```
+# Configure kubectl for EKS
+aws eks update-kubeconfig --region <region> --name <cluster-name>
+
+# Verify cluster connection
 kubectl get nodes
 kubectl get pods --all-namespaces
 ```
 
+#### VPC and Network Information
+```
+# Get VPC and subnet information
+terraform output vpc_id
+terraform output subnet_ids
+terraform output security_group_ids
+```
 ## 📖 Usage
 
 ### Quick Start
 
-```# 2. Deploy infrastructure
+```# 2. Initialize and deploy
+terraform init
 terraform apply
-```
 
-### Connect to EKS Cluster
-
-```# Verify connection
-kubectl get nodes
+# 3. View outputs
+terraform output
 ```
 
 ## ✨ Features
 
 - 🏗️ **Infrastructure as Code** - Terraform configuration for cloud infrastructure
-- 🌐 **Complete VPC Setup** - Creates new VPC with subnets, gateways, and routing
-- ⚓ **Full EKS Deployment** - Complete EKS cluster setup from scratch
-- 👥 **Managed Node Groups** - Auto-scaling worker nodes with best practices
-- 🔒 **Security Best Practices** - Secure security groups and IAM roles
-- 🎭 **IAM Management** - Role and policy management for EKS
-- ☁️ **Multi-AZ Deployment** - High availability across multiple availability zones
-- 📈 **Auto Scaling** - Automatic scaling based on workload
-- 🌍 **Multi-Cloud Support** - Configuration for multiple cloud providers
+- ⚓ **EKS Cluster Management** - Complete Kubernetes cluster setup with managed node groups
+- 🌐 **VPC Networking** - Custom VPC with subnets, gateways, and security groups
+- 🔒 **Security Best Practices** - Secure security groups and IAM policies
 - 🔄 **Cross Platform** - Compatible with Linux, macOS, and Windows
 - 📋 **Production Ready** - Following infrastructure best practices
 - 📦 **Modular Design** - Reusable Terraform modules
 - ⚙️ **Configurable** - Easy customization through variables
+
+## 📦 Resources
+
+This Terraform configuration creates the following resources:
+
+- `aws_eip`
+- `aws_eks_cluster`
+- `aws_eks_node_group`
+- `aws_iam_role`
+- `aws_iam_role_policy_attachment`
+- `aws_internet_gateway`
+- `aws_nat_gateway`
+- `aws_route_table`
+- `aws_route_table_association`
+- `aws_security_group`
+- `aws_security_group_rule`
+- `aws_subnet`
+- `aws_vpc`
 
 ## 📁 Project Structure
 
@@ -104,6 +134,14 @@ Copy `terraform.tfvars.example` to `terraform.tfvars` and customize the values:
 
 ``````
 
+See `variables.tf` for all available configuration options.
+
+## 🧹 Cleanup
+
+To destroy the created infrastructure:
+
+``````
+
 ## 👥 Contributors
 
 - [naninanides](https://github.com/naninanides) (1 contributions)
@@ -120,6 +158,6 @@ Copy `terraform.tfvars.example` to `terraform.tfvars` and customize the values:
 
 ⭐ **Please give this repository a star if you found it helpful!**
 
-*Generated with ❤️ by GitHub README Generator* - 2025-09-10 01:21
+*Generated with ❤️ by GitHub README Generator* - 2025-09-10 01:35
 
-🧠 Smart Analysis • ☁️ Cloud Provider Detection • 🚀 Production Ready
+🧠 Smart Analysis • ☁️ Multi-Cloud Support • 🚀 Production Ready
