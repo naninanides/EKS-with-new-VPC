@@ -1,0 +1,10 @@
+# Ignore Terraform state files
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfstate.*
+
+# Ignore Terraform lock file (optional, include if you want reproducible builds)
+.terraform.lock.hcl
+
+# Ignore .terraform working directory
+.terraform/
