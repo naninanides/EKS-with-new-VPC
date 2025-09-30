@@ -35,4 +35,3 @@ ami_type           = "AL2023_x86_64_STANDARD" #untuk versi kube 1.33
 aws_access_key = "youre access key"
 aws_secret_key = "youre secret key"
 key_name       = "youre key name"
-# vpc_id         = "vpc-0c019b6598b3dc3ee"
